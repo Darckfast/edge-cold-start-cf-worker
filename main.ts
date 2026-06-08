@@ -15,7 +15,7 @@ export default {
     async fetch(request, env, ctx): Promise<Response> {
         return new Response(JSON.stringify({ time: Date.now() }), {
             headers: {
-                'x-datacenter': request.cf.colo,
+                'x-datacenter': request.cf?.colo || 'Unknown',
             }
         });
     },
