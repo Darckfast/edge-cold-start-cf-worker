@@ -4,7 +4,7 @@
  */
 {
     "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "worker",
+    "name": "edge-cold-start-cf-worker",
     "main": "main.ts",
     "compatibility_date": "2026-06-08",
     "observability": {
