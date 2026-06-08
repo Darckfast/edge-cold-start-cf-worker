@@ -12,7 +12,11 @@
  */
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response(JSON.stringify({ time: Date.now() }));
-	},
+    async fetch(request, env, ctx): Promise<Response> {
+        return new Response(JSON.stringify({ time: Date.now() }), {
+            headers: {
+                'x-datacenter': request.cf.colo,
+            }
+        });
+    },
 } satisfies ExportedHandler<Env>;
