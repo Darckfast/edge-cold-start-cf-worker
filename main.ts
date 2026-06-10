@@ -13,9 +13,15 @@
 
 export default {
     async fetch(request, env, ctx): Promise<Response> {
-        return new Response(JSON.stringify({ time: Date.now() }), {
+        let region = request.cf?.colo || 'Unknown'
+        let cfray = request.headers.get('cf-ray')
+        if (cfray) {
+            region = cfray.split("-")[1]
+        }
+
+        return new Response(JSON.stringify({ time: performance.now() * 1000 }), {
             headers: {
-                'x-datacenter': request.cf?.colo || 'Unknown',
+                'x-datacenter': region,
             }
         });
     },
